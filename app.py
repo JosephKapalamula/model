@@ -16,12 +16,33 @@ school_district = st.selectbox("School Region", [0, 1, 2], format_func=lambda x:
 parent_teacher_progress_discussions = st.selectbox(
     "Parent Discussed with Teacher on Learners Progress", [0, 1, 2, 3], format_func=lambda x: ["Dont Know", "No", "No Response", "Yes"][x]
 )
-parent_highest_grade = st.selectbox(
-    "Learners Highest Grade Attended", [8,3,4,0, 6, 7,5, 1, 2], format_func=lambda x: [
-        "Don't Know","STD 1","STD 2", "STD 3","STD 4", "STD 5",
-        "STD 6", "STD 7", "STD 8", 
-         ][x]
-)
+
+educational_level = st.selectbox("Learner's Educational Level", ["Primary", "Secondary", "Tertiary"])
+
+# Title for Learner's Highest Grade Attended
+st.write("Learner's Highest Grade Attended")
+
+if educational_level == "Primary":
+    parent_highest_grade = st.selectbox(
+        "", [0, 1, 2, 3, 4, 5, 6, 7, 8], format_func=lambda x: [
+            "Don't Know", "STD 1", "STD 2", "STD 3", "STD 4", "STD 5",
+            "STD 6", "STD 7", "STD 8"
+        ][x]
+    )
+elif educational_level == "Secondary":
+    parent_highest_grade = st.selectbox(
+        "", [9, 10, 11, 12], format_func=lambda x: [
+            "Form 1", "Form 2", "Form 3", "Form 4"
+        ][x-9]
+    )
+elif educational_level == "Tertiary":
+    parent_highest_grade = st.selectbox(
+        "", [13, 14, 15,16 ], format_func=lambda x: [
+            "First Year", "Second Year", "Third Year", "Fourth Year"
+        ][x-13]
+    )
+
+
 child_age = st.slider("Child's Age", min_value=5, max_value=18, step=1)
 highest_grade = st.selectbox(
     "Parents's Highest Grade", [0, 1, 2, 3], format_func=lambda x: ["None", "Primary", "Secondary", "Higher"][x]
