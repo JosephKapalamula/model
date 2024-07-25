@@ -11,23 +11,38 @@ scaler = joblib.load("featuresScaleMinMax.pkl")
 # Title of the app
 st.title("SCHOOL DROPOUT PREDICTION")
 
+
 # Input fields for each feature
 school_district = st.selectbox("School Region", [0, 1, 2], format_func=lambda x: ["Central", "North", "South"][x])
-parent_teacher_progress_discussions = st.selectbox(
-    "Parent Discussed with Teacher on Learners Progress", [0, 1, 2, 3], format_func=lambda x: ["Dont Know", "No", "No Response", "Yes"][x]
+
+# child age2
+child_age = st.slider("Child's Age", min_value=5, max_value=18, step=1)
+
+# child hiehest grade 3
+highest_grade = st.selectbox(
+    "Learner's Highest Grade Ever Attended", [1, 2, 3,4,5,6,7,8], format_func=lambda x: [ "STD 1", "STD 2", "STD 3","STD 4","STD 5","STD 6","STD 7","STD 8"][x-1]
 )
 
+#highest grade attended in 20
+highest_grade_2019_20 = st.selectbox(
+    "Learner Highest Grade Attended in 2019 - 2020", [0,1,2,3,4,5,6,7,8], format_func=lambda x: [
+        "Don't Know","STD 1","STD 2", "STD 3","STD 4", "STD 5",
+        "STD 6", "STD 7", "STD 8", 
+         ][x]
+)
+
+#parent education level
 educational_level = st.selectbox("Parent's Educational Level", ["Primary", "Secondary", "Tertiary"])
 
 # Title for Learner's Highest Grade Attended
-st.write("Parent Highest Grade Attended")
+st.write("Parent's highest education grade attended")
 
 if educational_level == "Primary":
     parent_highest_grade = st.selectbox(
-        "", [0, 1, 2, 3, 4, 5, 6, 7, 8], format_func=lambda x: [
-            "Don't Know", "STD 1", "STD 2", "STD 3", "STD 4", "STD 5",
+        "", [1, 2, 3, 4, 5, 6, 7, 8], format_func=lambda x: [
+             "STD 1", "STD 2", "STD 3", "STD 4", "STD 5",
             "STD 6", "STD 7", "STD 8"
-        ][x]
+        ][x-1]
     )
 elif educational_level == "Secondary":
     parent_highest_grade = st.selectbox(
@@ -41,21 +56,21 @@ elif educational_level == "Tertiary":
             "First Year", "Second Year", "Third Year", "Fourth Year"
         ][x-13]
     )
+#Household wealth index
+wealth_index = st.selectbox(" Household wealth index", [0, 1, 2, 3,4], format_func=lambda x: ["Poorest", "Second", "Middle", "Fourth", "Richest"][x])
 
-# st.write(parent_highest_grade)
-child_age = st.slider("Child's Age", min_value=5, max_value=18, step=1)
-highest_grade = st.selectbox(
-    "Learner's Highest Grade", [1, 2, 3,4,5,6,7,8], format_func=lambda x: [ "STD 1", "STD 2", "STD 3","STD 4","STD 5","STD 6","STD 7","STD 8"][x-1]
-)
-# st.write(highest_grade)
 
-wealth_index = st.selectbox("Wealth Index", [0, 1, 2, 3,4], format_func=lambda x: ["Poorest", "Second", "Middle", "Fourth", "Richest"][x])
-highest_grade_2019_20 = st.selectbox(
-    "Learner Highest Grade Attended in 2019 - 2020", [0,1,2,3,4,5,6,7,8], format_func=lambda x: [
-        "Don't Know","STD 1","STD 2", "STD 3","STD 4", "STD 5",
-        "STD 6", "STD 7", "STD 8", 
-         ][x]
+
+
+
+
+
+
+parent_teacher_progress_discussions = st.selectbox(
+    "Parent Discussed with Teacher on Learner's Progress", [0, 1, 2, 3], format_func=lambda x: ["Dont Know", "No", "No Response", "Yes"][x]
 )
+
+
 
 
 def mock_model_predict(df):
