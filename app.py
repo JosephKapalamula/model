@@ -16,7 +16,7 @@ st.title("SCHOOL DROPOUT PREDICTION")
 school_district = st.selectbox("School Region", [0, 1, 2], format_func=lambda x: ["Central", "North", "South"][x])
 
 # child age2
-child_age = st.slider("Child's Age", min_value=5, max_value=18, step=1)
+child_age = st.slider("Child's Age", min_value=5, max_value=17, step=1)
 
 # child hiehest grade 3
 highest_grade = st.selectbox(
@@ -32,7 +32,7 @@ highest_grade_2019_20 = st.selectbox(
 )
 
 #parent education level
-educational_level = st.selectbox("Parent's Educational Level", ["Primary", "Secondary", "Tertiary"])
+educational_level = st.selectbox("Parent's Educational Level", ["Primary", "Secondary", "Tertiary","Don't Know"])
 
 # Title for Learner's Highest Grade Attended
 st.write("Parent's highest education grade attended")
@@ -56,6 +56,8 @@ elif educational_level == "Tertiary":
             "First Year", "Second Year", "Third Year", "Fourth Year"
         ][x-13]
     )
+elif educational_level=="Don't Know":
+    parent_highest_grade=0
 #Household wealth index
 wealth_index = st.selectbox(" Household wealth index", [0, 1, 2, 3,4], format_func=lambda x: ["Poorest", "Second", "Middle", "Fourth", "Richest"][x])
 
@@ -98,9 +100,9 @@ if st.button("Predict"):
              features['highest_grade_2019_20'])).reshape(1,-1)
     df = pd.DataFrame(scaler.transform(data), columns=columns)
     # st.write(columns)
-    # st.dataframe(df)
+    #st.dataframe(df)
 
     prediction = mock_model_predict(df)
-    st.success(f"Student's Current Status: {prediction}")
+    st.success(f"Learner Drop Out Status: {prediction}")
 
 # To run the app, use the command: streamlit run app.py
