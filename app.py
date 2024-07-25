@@ -17,10 +17,10 @@ parent_teacher_progress_discussions = st.selectbox(
     "Parent Discussed with Teacher on Learners Progress", [0, 1, 2, 3], format_func=lambda x: ["Dont Know", "No", "No Response", "Yes"][x]
 )
 
-educational_level = st.selectbox("Learner's Educational Level", ["Primary", "Secondary", "Tertiary"])
+educational_level = st.selectbox("Parent's Educational Level", ["Primary", "Secondary", "Tertiary"])
 
 # Title for Learner's Highest Grade Attended
-st.write("Learner's Highest Grade Attended")
+st.write("Parent Highest Grade Attended")
 
 if educational_level == "Primary":
     parent_highest_grade = st.selectbox(
@@ -42,11 +42,13 @@ elif educational_level == "Tertiary":
         ][x-13]
     )
 
-
+# st.write(parent_highest_grade)
 child_age = st.slider("Child's Age", min_value=5, max_value=18, step=1)
 highest_grade = st.selectbox(
-    "Parents's Highest Grade", [0, 1, 2, 3], format_func=lambda x: ["None", "Primary", "Secondary", "Higher"][x]
+    "Learner's Highest Grade", [1, 2, 3,4,5,6,7,8], format_func=lambda x: [ "STD 1", "STD 2", "STD 3","STD 4","STD 5","STD 6","STD 7","STD 8"][x-1]
 )
+# st.write(highest_grade)
+
 wealth_index = st.selectbox("Wealth Index", [0, 1, 2, 3,4], format_func=lambda x: ["Poorest", "Second", "Middle", "Fourth", "Richest"][x])
 highest_grade_2019_20 = st.selectbox(
     "Learner Highest Grade Attended in 2019 - 2020", [0,1,2,3,4,5,6,7,8], format_func=lambda x: [
