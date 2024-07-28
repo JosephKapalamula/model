@@ -15,13 +15,42 @@ st.title("SCHOOL DROPOUT PREDICTION")
 # Input fields for each feature
 school_district = st.selectbox("School Region", [0, 1, 2], format_func=lambda x: ["Central", "North", "South"][x])
 
-# child age2
-child_age = st.slider("Child's Age", min_value=5, max_value=17, step=1)
+
 
 # child hiehest grade 3
 highest_grade = st.selectbox(
     "Learner's Highest Grade Ever Attended", [1, 2, 3,4,5,6,7,8], format_func=lambda x: [ "STD 1", "STD 2", "STD 3","STD 4","STD 5","STD 6","STD 7","STD 8"][x-1]
 )
+
+# child's age 
+if highest_grade <3:
+    min_age = 5
+    max_age = 7
+elif highest_grade ==3:
+    min_age = 7
+    max_age = 17
+elif highest_grade ==4:
+    min_age = 8
+    max_age = 17
+elif highest_grade ==5:
+    min_age = 9
+    max_age = 17
+elif highest_grade == 6:
+    min_age = 10
+    max_age = 17
+elif highest_grade == 7:
+    min_age = 11
+    max_age = 17
+elif highest_grade == 8:
+    min_age = 12
+    max_age = 17
+else:
+    min_age = 5
+    max_age = 17  
+
+
+# Child's age slider with dynamic max value
+child_age = st.slider("Child's Age", min_value=min_age, max_value=max_age, step=1)
 
 #highest grade attended in 20
 highest_grade_2019_20 = st.selectbox(
@@ -30,6 +59,8 @@ highest_grade_2019_20 = st.selectbox(
         "STD 6", "STD 7", "STD 8", 
          ][x]
 )
+
+
 
 #parent education level
 educational_level = st.selectbox("Parent's Educational Level", ["Primary", "Secondary", "Tertiary","Don't Know"])
@@ -44,6 +75,8 @@ if educational_level == "Primary":
             "STD 6", "STD 7", "STD 8"
         ][x-1]
     )
+
+
 elif educational_level == "Secondary":
     parent_highest_grade = st.selectbox(
         "", [9, 10, 11, 12], format_func=lambda x: [
