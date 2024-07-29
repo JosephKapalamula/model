@@ -22,27 +22,29 @@ highest_grade = st.selectbox(
     "Learner's Highest Grade Ever Attended", [1, 2, 3,4,5,6,7,8], format_func=lambda x: [ "STD 1", "STD 2", "STD 3","STD 4","STD 5","STD 6","STD 7","STD 8"][x-1]
 )
 
+
+
 # child's age 
-if highest_grade <3:
+if highest_grade <=2:
     min_age = 5
-    max_age = 7
+    max_age = 17
 elif highest_grade ==3:
-    min_age = 7
+    min_age = 6
     max_age = 17
 elif highest_grade ==4:
-    min_age = 8
+    min_age = 7
     max_age = 17
 elif highest_grade ==5:
-    min_age = 9
+    min_age = 8
     max_age = 17
 elif highest_grade == 6:
-    min_age = 10
+    min_age = 9
     max_age = 17
 elif highest_grade == 7:
-    min_age = 11
+    min_age = 10
     max_age = 17
 elif highest_grade == 8:
-    min_age = 12
+    min_age = 10
     max_age = 17
 else:
     min_age = 5
