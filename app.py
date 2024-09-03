@@ -113,9 +113,9 @@ parent_teacher_progress_discussions = st.selectbox(
 def mock_model_predict(df):
     prediction = model.predict(df)[0]
     if prediction == 1:
-        return "Dropped Out"
+        return "Learner is likely to Drop out "
     else:
-        return "Not Dropped Out"
+        return "Learner is not likely to drop out"
     return 
 
 if st.button("Predict"):
