@@ -138,6 +138,6 @@ if st.button("Predict"):
     #st.dataframe(df)
 
     prediction = mock_model_predict(df)
-    st.success(f"Learner Drop Out Status: {prediction}")
+    st.success(f"Prediction Results: {prediction}")
 
 # To run the app, use the command: streamlit run app.py
